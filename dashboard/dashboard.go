@@ -126,6 +126,7 @@ const (
 		"links": [],
 		"panels": [{{ .Panels }}],
 		"schemaVersion": 27,
+		"refresh": "5s",
 		"style": "dark",
 		"tags": [],
 		"templating": {
