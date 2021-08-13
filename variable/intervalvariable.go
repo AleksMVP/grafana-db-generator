@@ -8,6 +8,7 @@ import (
 )
 
 type intervalVariableTemplate struct {
+	Name    string
 	Current string
 	Options string 
 	Query   string
@@ -17,7 +18,7 @@ type IntervalVariable struct {
 	data intervalVariableTemplate
 }
 
-func NewIntervalVariable(intervals []string) IntervalVariable {
+func NewIntervalVariable(name string, intervals []string) IntervalVariable {
 	opts := []option{}
 	cur  := option{
 		Selected: false,
@@ -46,6 +47,7 @@ func NewIntervalVariable(intervals []string) IntervalVariable {
 
 	return IntervalVariable{
 		data: intervalVariableTemplate{
+			Name:    name,
 			Current: string(curJson),
 			Options: string(optsJson),
 			Query:   query,
@@ -60,22 +62,21 @@ func (instance *IntervalVariable) Draw()(variable string, err error) {
 }
 
 const (
-	INTERVAL_VAR_TEMPLATE = `
-{
-	"auto": false,
-	"auto_count": 30,
-	"auto_min": "10s",
-	"current": {{ .Current }},
-	"description": null,
-	"error": null,
-	"hide": 0,
-	"label": null,
-	"name": "scape",
-	"options": {{ .Options }},
-	"query": "{{ .Query }}",
-	"queryValue": "",
-	"refresh": 2,
-	"skipUrlSync": false,
-	"type": "interval"
-}`
+	INTERVAL_VAR_TEMPLATE = `{
+		"auto": false,
+		"auto_count": 30,
+		"auto_min": "10s",
+		"current": {{ .Current }},
+		"description": null,
+		"error": null,
+		"hide": 0,
+		"label": null,
+		"name": "{{ .Name }}",
+		"options": {{ .Options }},
+		"query": "{{ .Query }}",
+		"queryValue": "",
+		"refresh": 2,
+		"skipUrlSync": false,
+		"type": "interval"
+	}`
 )

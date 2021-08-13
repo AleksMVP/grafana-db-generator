@@ -21,6 +21,7 @@ type current struct {
 }
 
 type customVariableTemplate struct {
+	Name    string
 	Current string
 	Options string 
 	Query   string
@@ -30,7 +31,7 @@ type CustomVariable struct {
 	data customVariableTemplate
 }
 
-func NewCustomVariable(book map[string]string) CustomVariable {
+func NewCustomVariable(name string, book map[string]string) CustomVariable {
 	opts := []option{}
 	cur  := current{
 		Selected: true,
@@ -56,6 +57,7 @@ func NewCustomVariable(book map[string]string) CustomVariable {
 
 	return CustomVariable{
 		data: customVariableTemplate{
+			Name:    name,
 			Current: string(curJson),
 			Options: string(optsJson),
 			Query:   query,
@@ -79,7 +81,7 @@ const (
 		"includeAll": false,
 		"label": null,
 		"multi": true,
-		"name": "exchange",
+		"name": "{{ .Name }}",
 		"options": {{ .Options }},
 		"query": "{{ .Query }}",
 		"queryValue": "",
