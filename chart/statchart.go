@@ -72,7 +72,7 @@ const (
 		"id": {{ .ID }},
 		"options": {
 			"colorMode": "value",
-			"graphMode": "none",
+			"graphMode": "area",
 			"justifyMode": "center",
 			"orientation": "auto",
 			"reduceOptions": {
