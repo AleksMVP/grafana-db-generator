@@ -9,8 +9,8 @@ type StatChart struct {
 	data chartTemplate
 }
 
-func NewStatChart(title string, height, width int, targets []models.ChartTarget) (Chart) {
-	return Chart{
+func NewStatChart(title string, height, width int, targets []models.ChartTarget) (StatChart) {
+	return StatChart{
 		data: chartTemplate{
 			Height:  height,
 			Width:   width,
